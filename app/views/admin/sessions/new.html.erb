@@ -1,2 +1,19 @@
-<h1>Admin::Sessions#new</h1>
-<p>Find me in app/views/admin/sessions/new.html.erb</p>
+<div class="admin-login">
+  <h1>ログイン画面</h1>
+
+  <%= form_with(url: admin_login_path, local: true, class: "login-form") do |f| %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, required: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password, required: true %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "ログイン" %>
+    </div>
+  <% end %>
+</div>

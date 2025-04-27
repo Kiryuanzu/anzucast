@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get "sessions/new"
-    get "sessions/create"
-    get "sessions/destroy"
+    get "login", to: "sessions#new"
+    post "login", to: "sessions#create"
+    delete "logout", to: "sessions#destroy"
+    root "dashboard#index"
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
