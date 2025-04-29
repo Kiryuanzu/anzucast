@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :episode do
-    get "rss/index"
+    get :rss, to: "rss#index", defaults: { format: :rss }
   end
   namespace :admin do
     get "login", to: "sessions#new"
