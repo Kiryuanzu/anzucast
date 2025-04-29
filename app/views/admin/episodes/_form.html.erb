@@ -25,6 +25,16 @@
   </div>
 
   <div>
+    <%= f.label :cover_image, "カバー画像", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.file_field :cover_image, class: "mt-1 block w-full" %>
+  </div>
+
+  <div>
+    <%= f.label :audio_file, "音声ファイル", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.file_field :audio_file, class: "mt-1 block w-full" %>
+  </div>
+
+  <div>
     <%= f.submit "投稿する", class: "inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
   </div>
 

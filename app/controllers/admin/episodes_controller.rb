@@ -23,7 +23,9 @@ class Admin::EpisodesController < Admin::BaseController
       :description,
       :summary,
       :published_at,
-      :duration
+      :duration,
+      :cover_image,
+      :audio_file
     )
   end
 end
