@@ -9,7 +9,7 @@ class Admin::SessionsController < Admin::BaseController
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to admin_root_path, notice: "ログインしました"
+      redirect_to admin_episodes_path, notice: "ログインしました"
     else
       flash.now[:alert] = "パスワードが違っています"
       render :new, status: :unprocessable_entity
