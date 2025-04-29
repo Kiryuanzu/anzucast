@@ -1,6 +1,6 @@
 class Admin::EpisodesController < Admin::BaseController
   def index
-    @episodes = Episode.order(published_at: :desc).all
+    @episodes = Episode.order(published_at: :asc).all
     @episode = Episode.new
   end
 
