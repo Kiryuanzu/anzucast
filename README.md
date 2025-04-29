@@ -13,4 +13,5 @@
 
 ```bash
 bin/dev
+# ./Procfile.dev でrails serverコマンドとライブリビルドプロセスの両方を実行
 ```
