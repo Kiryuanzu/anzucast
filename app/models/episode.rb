@@ -1,6 +1,9 @@
 class Episode < ApplicationRecord
   belongs_to :user
 
+  has_one_attached :cover_image
+  has_one_attached :audio_file
+
   validates :title, presence: true, length: { maximum: 200 }
   validates :description, presence: true
   validates :published_at, presence: true
