@@ -16,7 +16,6 @@
             <p class="text-sm text-gray-500">
               公開日: <%= episode.published_at.strftime("%Y-%m-%d %H:%M") %>
             </p>
-            <p class="mt-1 text-gray-700 italic">概要: <%= episode.summary %></p>
             <p class="mt-2 whitespace-pre-line text-gray-800"><%= episode.description %></p>
             <p class="mt-1 text-sm text-gray-500">再生時間: <%= episode.duration.presence || "未設定" %></p>
 

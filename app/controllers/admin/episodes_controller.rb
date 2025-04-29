@@ -21,7 +21,6 @@ class Admin::EpisodesController < Admin::BaseController
     params.require(:episode).permit(
       :title,
       :description,
-      :summary,
       :published_at,
       :duration,
       :cover_image,
