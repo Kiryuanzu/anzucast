@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_27_131748) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_29_012027) do
+  create_table "episodes", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description", null: false
+    t.text "summary"
+    t.datetime "published_at", null: false
+    t.string "duration"
+    t.string "guid", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guid"], name: "index_episodes_on_guid", unique: true
+    t.index ["user_id"], name: "index_episodes_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -19,4 +33,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_27_131748) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
+
+  add_foreign_key "episodes", "users"
 end
