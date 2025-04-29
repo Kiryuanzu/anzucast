@@ -5,7 +5,7 @@ xml.rss version: "2.0",
         "xmlns:atom" => "http://www.w3.org/2005/Atom" do
   xml.channel do
     # フィード自身へのリンク（自己参照）
-    xml.atom :link, href: rss_url, rel: "self", type: "application/rss+xml"
+    xml.atom :link, href: "#{request.base_url}/episode/rss", rel: "self", type: "application/rss+xml"
 
     # チャンネル基本情報
     xml.title "桐生あんず電波局"
