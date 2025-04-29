@@ -1,0 +1,25 @@
+<div class="container mx-auto px-4 py-12">
+  <h1 class="text-2xl font-bold mb-6">エピソード投稿</h1>
+
+  <%= render "form", episode: @episode %>
+
+  <h2 class="text-xl font-semibold mt-12 mb-4">投稿済みエピソード一覧</h2>
+
+  <% if @episodes.any? %>
+    <ul class="space-y-6">
+      <% @episodes.each do |episode| %>
+        <li class="border-b pb-4">
+          <h3 class="text-lg font-bold text-gray-800"><%= episode.title %></h3>
+          <p class="text-sm text-gray-500">
+            公開日: <%= episode.published_at.strftime("%Y-%m-%d %H:%M") %>
+          </p>
+          <p class="mt-1 text-gray-700 italic">概要: <%= episode.summary %></p>
+          <p class="mt-2 whitespace-pre-line text-gray-800"><%= episode.description %></p>
+          <p class="mt-1 text-sm text-gray-500">再生時間: <%= episode.duration.presence || "未設定" %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-gray-500">まだエピソードは投稿されていません。</p>
+  <% end %>
+</div>
