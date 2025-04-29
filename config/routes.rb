@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :episode do
+    get "rss/index"
+  end
   namespace :admin do
     get "login", to: "sessions#new"
     post "login", to: "sessions#create"
