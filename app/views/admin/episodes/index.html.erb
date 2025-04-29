@@ -17,6 +17,22 @@
             <p class="mt-1 text-gray-700 italic">概要: <%= episode.summary %></p>
             <p class="mt-2 whitespace-pre-line text-gray-800"><%= episode.description %></p>
             <p class="mt-1 text-sm text-gray-500">再生時間: <%= episode.duration.presence || "未設定" %></p>
+
+            <% if episode.cover_image.attached? %>
+              <div class="mt-4">
+                <%= image_tag episode.cover_image.variant(resize_to_limit: [300, 300]), class: "rounded shadow-md" %>
+              </div>
+            <% end %>
+
+            <% if episode.audio_file.attached? %>
+              <div class="mt-4">
+                <audio controls class="w-full">
+                  <source src="<%= url_for(episode.audio_file) %>" type="<%= episode.audio_file.content_type %>">
+                  このブラウザはaudioタグをサポートしていません。
+                </audio>
+              </div>
+            <% end %>
+
           </li>
         <% end %>
       </ul>
