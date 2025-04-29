@@ -1,33 +1,46 @@
 xml.instruct! :xml, version: "1.0", encoding: "UTF-8"
 
 xml.rss version: "2.0",
-        "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd" do
+        "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",
+        "xmlns:atom" => "http://www.w3.org/2005/Atom" do
   xml.channel do
+    # フィード自身へのリンク（自己参照）
+    xml.atom :link, href: rss_url, rel: "self", type: "application/rss+xml"
+
+    # チャンネル基本情報
     xml.title "桐生あんず電波局"
     xml.link "https://podcasters.spotify.com/pod/show/kiryuanzu"
     xml.description "三浦半島在住のWebエンジニアが日常での考え事や推しについての話をするラジオです\nhttps://www.youtube.com/@kiryuanzu でも配信しています"
     xml.language "ja"
     xml.lastBuildDate @episodes.first&.updated_at&.rfc2822
     xml.copyright "kiryuanzu"
+
+    # iTunes拡張
     xml.itunes :author, "kiryuanzu"
     xml.itunes :explicit, "no"
     xml.itunes :summary, "三浦半島在住のWebエンジニアが日常での考え事や推しについての話をするラジオです\nhttps://www.youtube.com/@kiryuanzu でも配信しています"
+    xml.itunes :type, "episodic"
+
     xml.itunes :owner do
       xml.itunes :name, "kiryuanzu"
       xml.itunes :email, ""
     end
+
     xml.itunes :image, href: "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/42740810/42740810-1735436174748-1a60f549aec39.jpg"
 
     xml.itunes :category, text: "Society & Culture" do
       xml.itunes :category, text: "Personal Journals"
     end
 
+    # エピソード一覧
     @episodes.each do |episode|
       xml.item do
         xml.title episode.title
+
         xml.description do
           xml.cdata! episode.description
         end
+
         xml.pubDate episode.published_at.rfc2822
         xml.guid episode.guid, isPermaLink: false
 
@@ -37,9 +50,10 @@ xml.rss version: "2.0",
                         length: episode.audio_file.byte_size
         end
 
-        xml.itunes :summary, episode.summary if episode.summary.present?
+        xml.itunes :summary, episode.description
         xml.itunes :explicit, "no"
         xml.itunes :duration, episode.duration
+
         if episode.cover_image.attached?
           xml.itunes :image, href: rails_blob_url(episode.cover_image, only_path: false)
         end
