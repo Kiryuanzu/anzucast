@@ -19,20 +19,20 @@
             <p class="mt-2 whitespace-pre-line text-gray-800"><%= episode.description %></p>
             <p class="mt-1 text-sm text-gray-500">再生時間: <%= episode.duration.presence || "未設定" %></p>
 
-            <% if episode.cover_image.attached? %>
-              <div class="mt-4">
-                <%= image_tag episode.cover_image.variant(resize_to_limit: [300, 300]), class: "rounded shadow-md" %>
-              </div>
-            <% end %>
+            <div class="mt-4">
+              <% if episode.cover_image.attached? %>
+                <%= image_tag cloudfront_cover_image_url(episode.cover_image.variant(resize_to_limit: [400, 400])), class: "rounded shadow-md" %>
+              <% end %>
+            </div>
 
-            <% if episode.audio_file.attached? %>
-              <div class="mt-4">
+            <div class="mt-4">
+              <% if episode.audio_file.attached? %>
                 <audio controls class="w-full">
-                  <source src="<%= url_for(episode.audio_file) %>" type="<%= episode.audio_file.content_type %>">
-                  このブラウザはaudioタグをサポートしていません。
+                  <source src="<%= cloudfront_audio_file_url(episode.audio_file) %>" type="<%= episode.audio_file.content_type %>">
+                  このブラウザは audio タグをサポートしていません。
                 </audio>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
 
           </li>
         <% end %>

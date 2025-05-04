@@ -45,7 +45,7 @@ xml.rss version: "2.0",
         xml.guid episode.guid, isPermaLink: false
 
         if episode.audio_file.attached?
-          xml.enclosure url: rails_blob_url(episode.audio_file, only_path: false),
+          xml.enclosure url: cloudfront_audio_file_url(episode.audio_file),
                         type: episode.audio_file.content_type,
                         length: episode.audio_file.byte_size
         end
@@ -55,7 +55,7 @@ xml.rss version: "2.0",
         xml.itunes :duration, episode.duration
 
         if episode.cover_image.attached?
-          xml.itunes :image, href: rails_blob_url(episode.cover_image, only_path: false)
+          xml.itunes :image, href: cloudfront_cover_image_url(episode.cover_image)
         end
       end
     end
