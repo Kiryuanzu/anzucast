@@ -1,6 +1,10 @@
 xml.instruct! :xml, version: "1.0", encoding: "UTF-8"
 
 xml.rss version: "2.0",
+        "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
+        "xmlns:content" => "http://purl.org/rss/1.0/modules/content/",
+        "xmlns:anchor" => "https://anchor.fm/xmlns",
+        "xmlns:podcast" => "https://podcastindex.org/namespace/1.0",
         "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd",
         "xmlns:atom" => "http://www.w3.org/2005/Atom" do
   xml.channel do
@@ -12,7 +16,7 @@ xml.rss version: "2.0",
     xml.link "https://podcasters.spotify.com/pod/show/kiryuanzu"
     xml.description "三浦半島在住のWebエンジニアが日常での考え事や推しについての話をするラジオです\nhttps://www.youtube.com/@kiryuanzu でも配信しています"
     xml.language "ja"
-    xml.lastBuildDate @episodes.first&.updated_at&.rfc2822
+    xml.lastBuildDate @episodes.last&.updated_at&.utc&.rfc2822
     xml.copyright "kiryuanzu"
 
     # iTunes拡張
@@ -41,7 +45,7 @@ xml.rss version: "2.0",
           xml.cdata! episode.description
         end
 
-        xml.pubDate episode.published_at.rfc2822
+        xml.pubDate episode.published_at.utc.rfc2822
         xml.guid episode.guid, isPermaLink: false
 
         if episode.audio_file.attached?
