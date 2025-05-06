@@ -56,7 +56,9 @@ xml.rss version: "2.0",
     # エピソード一覧
     @episodes.each do |episode|
       xml.item do
-        xml.title episode.title
+        xml.title do
+          xml.cdata! episode.title
+        end
 
         xml.description do
           xml.cdata! episode.description
@@ -64,6 +66,10 @@ xml.rss version: "2.0",
 
         xml.pubDate episode.published_at.utc.rfc2822
         xml.guid episode.guid, isPermaLink: false
+
+        xml.dc :creator do
+          xml.cdata! "kiryuanzu"
+        end
 
         if episode.audio_file.attached?
           xml.enclosure url: cloudfront_audio_file_url(episode.audio_file),
