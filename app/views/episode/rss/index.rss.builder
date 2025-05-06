@@ -12,12 +12,29 @@ xml.rss version: "2.0",
     xml.atom :link, href: "#{request.base_url}/episode/rss", rel: "self", type: "application/rss+xml"
 
     # チャンネル基本情報
-    xml.title "桐生あんず電波局"
+    xml.title do
+      xml.cdata! "桐生あんず電波局"
+    end
+
     xml.link "https://podcasters.spotify.com/pod/show/kiryuanzu"
-    xml.description "三浦半島在住のWebエンジニアが日常での考え事や推しについての話をするラジオです\nhttps://www.youtube.com/@kiryuanzu でも配信しています"
-    xml.language "ja"
+
+    xml.description do
+      xml.cdata! "三浦半島在住のWebエンジニアが日常での考え事や推しについての話をするラジオです\nhttps://www.youtube.com/@kiryuanzu でも配信しています"
+    end
+
+    xml.author do
+      xml.cdata! "kiryuanzu"
+    end
+
+    xml.copyright do
+      xml.cdata! "kiryuanzu"
+    end
+
+    xml.language do
+      xml.cdata! "ja"
+    end
+
     xml.lastBuildDate @episodes.last&.updated_at&.utc&.rfc2822
-    xml.copyright "kiryuanzu"
 
     # iTunes拡張
     xml.itunes :author, "kiryuanzu"
