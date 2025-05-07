@@ -7,6 +7,7 @@
 ## 使用フレームワーク
 
 - Rails 8
+  - 本番DB は sqlite を使用
 - Tailwind CSS
 
 ## ローカルでの起動方法
