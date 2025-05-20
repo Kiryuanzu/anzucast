@@ -44,7 +44,7 @@ xml.rss version: "2.0",
 
     xml.itunes :owner do
       xml.itunes :name, "kiryuanzu"
-      xml.itunes :email, ""
+      xml.itunes :email, "anzu.nagato.1005@gmail.com"
     end
 
     xml.itunes :image, href: "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/42740810/42740810-1735436174748-1a60f549aec39.jpg"
