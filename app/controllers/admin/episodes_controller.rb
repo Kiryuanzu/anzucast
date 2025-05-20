@@ -10,7 +10,7 @@ class Admin::EpisodesController < Admin::BaseController
     if @episode.save
       redirect_to admin_episodes_path, notice: "エピソードを投稿しました"
     else
-      @episodes = Episode.order(published_at: :desc)
+      @episodes = Episode.order(published_at: :desc).page(params[:page]).per(10)
       render :index, status: :bad_request
     end
   end
