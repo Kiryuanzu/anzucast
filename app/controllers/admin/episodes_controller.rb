@@ -15,6 +15,20 @@ class Admin::EpisodesController < Admin::BaseController
     end
   end
 
+  def edit
+    @episode = Episode.find(params[:id])
+  end
+
+  def update
+    @episode = Episode.find(params[:id])
+
+    if @episode.update(episode_edit_params)
+      redirect_to edit_admin_episode_path(@episode.id), notice: "エピソードを更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def episode_params
@@ -25,6 +39,16 @@ class Admin::EpisodesController < Admin::BaseController
       :duration,
       :cover_image,
       :audio_file
+    )
+  end
+
+  def episode_edit_params
+    params.require(:episode).permit(
+      :title,
+      :description,
+      :published_at,
+      :duration,
+      :guid
     )
   end
 end

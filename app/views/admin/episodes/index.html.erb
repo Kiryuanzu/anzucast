@@ -34,7 +34,10 @@
                 </audio>
               <% end %>
             </div>
-
+            <div class="mt-4">
+              <%= link_to "編集する", edit_admin_episode_path(episode.id),
+                          class: "text-sm text-blue-600 hover:underline" %>
+            </div>
           </li>
         <% end %>
       </ul>

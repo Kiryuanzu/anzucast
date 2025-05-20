@@ -1,0 +1,60 @@
+<div class="bg-white border rounded-md shadow-md p-6">
+  <% if flash[:notice] %>
+    <div class="mt-4 bg-orange-100 text-orange-700 p-3 rounded text-sm">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <%= form_with model: [:admin, @episode], method: :patch, local: true, html: { class: "space-y-6" } do |f| %>
+    <% if @episode.errors.any? %>
+      <div class="bg-red-50 border border-red-300 text-red-800 p-4 rounded">
+        <ul class="list-disc list-inside">
+          <% episode.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.label :title, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :title, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+    </div>
+
+    <div>
+      <%= f.label :description, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_area :description, rows: 5, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+    </div>
+
+    <div>
+      <%= f.label :published_at, "公開日時", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.datetime_local_field :published_at, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+    </div>
+
+    <div>
+      <%= f.label :duration, "再生時間（例: 00:32:15）", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :duration, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+    </div>
+
+<!--
+    <div>
+      <%= f.label :cover_image, "カバー画像", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.file_field :cover_image, class: "mt-1 block w-full" %>
+    </div>
+
+    <div>
+      <%= f.label :audio_file, "音声ファイル", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.file_field :audio_file, class: "mt-1 block w-full" %>
+    </div>
+!-->
+
+    <div>
+      <%= f.label :guid, "UUID", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :guid, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 font-mono text-sm text-gray-800" %>
+    </div>
+
+    <div>
+      <%= f.submit "更新", class: "px-4 py-2 rounded" %>
+    </div>
+  <% end %>
+  <%= link_to "一覧に戻る", admin_episodes_path, class: "text-md text-blue-600 hover:underline" %>
+</div>
