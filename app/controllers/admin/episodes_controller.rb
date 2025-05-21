@@ -5,7 +5,16 @@ class Admin::EpisodesController < Admin::BaseController
   end
 
   def create
-    @episode = current_user.episodes.build(episode_params)
+    @episode = current_user.episodes.build(episode_params.except(:audio_file))
+
+    if episode_params[:audio_file]
+      audio_file_param = episode_params[:audio_file]
+
+      @episode.audio_file.attach(io: audio_file_param.tempfile,
+                                filename: audio_file_param.original_filename,
+                                content_type: "audio/x-m4a",
+                                identify: false)
+    end
 
     if @episode.save
       redirect_to admin_episodes_path, notice: "エピソードを投稿しました"
@@ -22,7 +31,17 @@ class Admin::EpisodesController < Admin::BaseController
   def update
     @episode = Episode.find(params[:id])
 
-    if @episode.update(episode_edit_params)
+    if episode_edit_params[:audio_file]
+      audio_file_param = episode_edit_params[:audio_file]
+      @episode.audio_file.purge if @episode.audio_file.attached?
+
+      @episode.audio_file.attach(io: audio_file_param.tempfile,
+                                filename: audio_file_param.original_filename,
+                                content_type: "audio/x-m4a",
+                                identify: false)
+    end
+
+    if @episode.update(episode_edit_params.except(:audio_file))
       redirect_to edit_admin_episode_path(@episode.id), notice: "エピソードを更新しました"
     else
       render :edit, status: :unprocessable_entity
@@ -48,6 +67,7 @@ class Admin::EpisodesController < Admin::BaseController
       :description,
       :published_at,
       :duration,
+      :audio_file,
       :guid
     )
   end
