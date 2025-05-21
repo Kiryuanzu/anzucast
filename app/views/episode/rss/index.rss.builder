@@ -34,7 +34,7 @@ xml.rss version: "2.0",
       xml.cdata! "ja"
     end
 
-    xml.lastBuildDate @episodes.last&.updated_at&.utc&.strftime("%a, %d %b %Y %H:%M:%S GMT")
+    xml.lastBuildDate @last_build_date
 
     # iTunes拡張
     xml.itunes :author, "kiryuanzu"
