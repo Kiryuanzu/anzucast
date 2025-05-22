@@ -60,6 +60,8 @@ xml.rss version: "2.0",
           xml.cdata! episode.title
         end
 
+        xml.link episode_url(episode)
+
         xml.description do
           xml.cdata! episode.description
         end
