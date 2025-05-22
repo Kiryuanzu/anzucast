@@ -1,0 +1,26 @@
+<div class="max-w-2xl mx-auto py-8 px-4">
+  <div class="mb-4">
+    <%= link_to "← 一覧に戻る", episodes_path, class: "text-sm text-blue-600 hover:underline" %>
+  </div>
+  <h1 class="text-2xl font-bold mb-4"><%= @episode.title %></h1>
+  <p class="text-sm text-gray-500">公開日: <%= @episode.published_at.strftime("%Y-%m-%d") %></p>
+
+  <div class="mt-4">
+    <% if @episode.cover_image.attached? %>
+      <%= image_tag cloudfront_cover_image_url(@episode.cover_image.variant(resize_to_limit: [400, 400])), class: "rounded shadow-md" %>
+    <% end %>
+  </div>
+
+  <div class="mt-4">
+    <% if @episode.audio_file.attached? %>
+      <audio controls class="w-full">
+        <source src="<%= cloudfront_audio_file_url(@episode.audio_file) %>" type="<%= @episode.audio_file.content_type %>">
+        このブラウザは audio タグをサポートしていません。
+      </audio>
+    <% end %>
+  </div>
+
+  <div class="mt-4 whitespace-pre-line text-gray-800">
+    <%= @episode.description %>
+  </div>
+</div>

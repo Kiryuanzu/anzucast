@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   namespace :episode do
     get :rss, to: "rss#index", defaults: { format: :rss }
   end
+  resources :episodes, only: [ :index, :show ]
+
   namespace :admin do
     get "login", to: "sessions#new"
     post "login", to: "sessions#create"
