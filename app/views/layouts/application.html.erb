@@ -21,8 +21,16 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
   </head>
 
-  <body>
-    <main>
+  <body class="bg-gray-50 text-gray-900">
+    <!-- ヘッダー -->
+    <header class="bg-white shadow sticky top-0 z-50">
+      <div class="max-w-5xl mx-auto px-4 py-3">
+        <%= link_to "桐生あんず電波局", episodes_path, class: "text-xl font-bold text-gray-800 hover:text-blue-600 transition" %>
+      </div>
+    </header>
+
+    <!-- コンテンツ -->
+    <main class="pt-6">
       <%= yield %>
     </main>
   </body>
