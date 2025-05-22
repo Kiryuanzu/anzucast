@@ -13,9 +13,17 @@ class Episode < ApplicationRecord
   validates :cover_image, presence: true
   validates :audio_file, presence: true
 
-
-
   before_validation :set_guid, on: :create
+
+  def audio_file_attach(attachment)
+    audio_file.attach(create_blob(attachment))
+  end
+
+  # audio_file の attachment.key には拡張子付きで保存したい
+  # Apple Podcast, Amazon Music のアプリでは拡張子がないと再生できないため
+  def attachable_storage_path
+    "#{ActiveStorage::Blob.generate_unique_secure_token(length: MINIMUM_TOKEN_LENGTH)}.m4a"
+  end
 
   private
 

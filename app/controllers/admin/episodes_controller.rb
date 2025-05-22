@@ -10,10 +10,7 @@ class Admin::EpisodesController < Admin::BaseController
     if episode_params[:audio_file]
       audio_file_param = episode_params[:audio_file]
 
-      @episode.audio_file.attach(io: audio_file_param.tempfile,
-                                filename: audio_file_param.original_filename,
-                                content_type: "audio/x-m4a",
-                                identify: false)
+      @episode.audio_file_attach(audio_file_param)
     end
 
     if @episode.save
@@ -35,10 +32,7 @@ class Admin::EpisodesController < Admin::BaseController
       audio_file_param = episode_edit_params[:audio_file]
       @episode.audio_file.purge if @episode.audio_file.attached?
 
-      @episode.audio_file.attach(io: audio_file_param.tempfile,
-                                filename: audio_file_param.original_filename,
-                                content_type: "audio/x-m4a",
-                                identify: false)
+      @episode.audio_file_attach(audio_file_param)
     end
 
     if @episode.update(episode_edit_params.except(:audio_file))
