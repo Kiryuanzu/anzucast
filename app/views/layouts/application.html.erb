@@ -22,16 +22,31 @@
   </head>
 
   <body class="bg-gray-50 text-gray-900">
-    <!-- ヘッダー -->
-    <header class="bg-white shadow sticky top-0 z-50">
-      <div class="max-w-5xl mx-auto px-4 py-3">
-        <%= link_to "桐生あんず電波局", root_path, class: "text-xl font-bold text-gray-800 hover:text-blue-600 transition" %>
+
+    <header class="bg-white border-b shadow-sm sticky top-0 z-50">
+      <div class="max-w-5xl mx-auto px-4 py-4">
+        <%= link_to root_path, class: "text-2xl font-bold text-gray-800 hover:text-blue-600 transition" do %>
+          桐生あんず電波局
+        <% end %>
       </div>
     </header>
 
-    <!-- コンテンツ -->
     <main class="pt-6">
       <%= yield %>
     </main>
   </body>
+  <footer class="bg-gray-900 mt-16 py-8 text-center text-base text-white">
+    <div class="max-w-5xl mx-auto px-4">
+
+      <div class="flex flex-wrap justify-center gap-6 text-sm sm:text-base">
+        <%= link_to "YouTube", "https://www.youtube.com/@kiryuanzu", target: "_blank", rel: "noopener", class: "hover:underline" %>
+        <%= link_to "Spotify", "https://open.spotify.com/show/21uKExfD0Cylqhg3bxrbk3", target: "_blank", rel: "noopener", class: "hover:underline" %>
+        <%= link_to "Apple Podcasts", "https://podcasts.apple.com/jp/podcast/%E6%A1%90%E7%94%9F%E3%81%82%E3%82%93%E3%81%9A%E9%9B%BB%E6%B3%A2%E5%B1%80/id1787746601", target: "_blank", rel: "noopener", class: "hover:underline" %>
+        <%= link_to "mixi2コミュニティ", "https://mixi.social/communities/c1b83199-775c-449a-84a8-081b2599dc03/about", target: "_blank", rel: "noopener", class: "hover:underline" %>
+        <%= link_to "RSSフィード", episode_rss_path, target: "_blank", rel: "noopener", class: "hover:underline" %>
+      </div>
+
+      <p class="mt-6 text-xs text-gray-400">&copy; <%= Time.current.year %> 桐生あんず電波局</p>
+    </div>
+  </footer>
 </html>
