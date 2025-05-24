@@ -1,7 +1,6 @@
 class EpisodesController < ApplicationController
   def index
-    @episodes = Episode.where("published_at <= ?", Time.current)
-                       .order(published_at: :desc)
+    @episodes = Episode.order(published_at: :desc)
                        .page(params[:page])
                        .per(10)
   end
