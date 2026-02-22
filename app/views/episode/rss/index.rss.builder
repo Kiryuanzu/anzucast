@@ -16,7 +16,7 @@ xml.rss version: "2.0",
       xml.cdata! "桐生あんず電波局"
     end
 
-    xml.link "https://podcasters.spotify.com/pod/show/kiryuanzu"
+    xml.link request.base_url
 
     xml.description do
       xml.cdata! "三浦半島在住のWebエンジニアが日常での考え事や推しについての話をするラジオです\nhttps://www.youtube.com/@kiryuanzu でも配信しています"
