@@ -12,4 +12,14 @@
   <% end %>
 
   <%= paginate @episodes %>
+
+  <section class="mt-12 rounded-md border border-gray-300 bg-white p-6 text-center shadow-sm">
+    <p class="text-base text-gray-900">
+      番組への感想や質問などは📮<%= link_to "こちら",
+                                      "https://forms.gle/F11Rmw5mVd8a7sYHA",
+                                      target: "_blank",
+                                      rel: "noopener",
+                                      class: "text-blue-600 hover:underline" %>から（Google Formが開きます）。お気軽にメッセージをお送りください。
+    </p>
+  </section>
 </div>
