@@ -1,17 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  description: MyText
-  published_at: 2025-04-29 10:20:27
-  duration: MyString
-  guid: MyString
-  user: one
+latest:
+  title: 第2回 テスト配信
+  description: "2回目のエピソードです。詳細は https://example.com/notes をどうぞ。"
+  published_at: <%= 1.day.ago.to_fs(:db) %>
+  duration: "00:30:00"
+  guid: guid-latest
+  user: kiryuanzu
 
-two:
-  title: MyString
-  description: MyText
-  published_at: 2025-04-29 10:20:27
-  duration: MyString
-  guid: MyString
-  user: two
+oldest:
+  title: 第1回 はじめまして
+  description: 最初のエピソードです。
+  published_at: <%= 10.days.ago.to_fs(:db) %>
+  duration: "00:10:00"
+  guid: guid-oldest
+  user: kiryuanzu

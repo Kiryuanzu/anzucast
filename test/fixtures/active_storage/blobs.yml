@@ -1,0 +1,7 @@
+latest_cover_blob: <%= ActiveStorage::FixtureSet.blob filename: "cover.png", content_type: "image/png" %>
+
+latest_audio_blob: <%= ActiveStorage::FixtureSet.blob filename: "audio.m4a", content_type: "audio/mp4" %>
+
+oldest_cover_blob: <%= ActiveStorage::FixtureSet.blob filename: "cover.png", content_type: "image/png" %>
+
+oldest_audio_blob: <%= ActiveStorage::FixtureSet.blob filename: "audio.m4a", content_type: "audio/mp4" %>

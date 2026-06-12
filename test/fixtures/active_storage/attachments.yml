@@ -1,0 +1,19 @@
+latest_cover_image:
+  name: cover_image
+  record: latest (Episode)
+  blob: latest_cover_blob
+
+latest_audio_file:
+  name: audio_file
+  record: latest (Episode)
+  blob: latest_audio_blob
+
+oldest_cover_image:
+  name: cover_image
+  record: oldest (Episode)
+  blob: oldest_cover_blob
+
+oldest_audio_file:
+  name: audio_file
+  record: oldest (Episode)
+  blob: oldest_audio_blob

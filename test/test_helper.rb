@@ -13,3 +13,12 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+module ActionDispatch
+  class IntegrationTest
+    # 管理画面のテスト用に admin ユーザーでログインする
+    def log_in_as(user, password: "password")
+      post admin_login_path, params: { email: user.email, password: password }
+    end
+  end
+end
